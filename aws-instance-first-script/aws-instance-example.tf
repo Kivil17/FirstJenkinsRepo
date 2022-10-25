@@ -73,7 +73,7 @@ depends_on = [ aws_instance.web1 ]
 
 
  resource "aws_security_group" "webSG" {
-  name        = "webSG"
+  name        = "webSG2"
   description = "Allow ssh  inbound traffic"
 
   ingress {
