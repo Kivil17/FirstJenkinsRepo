@@ -3,12 +3,16 @@ pipeline {
     parameters {
         string(name: 'folderName', defaultValue: '', description: 'folder name to create or access to it')
         booleanParam(name: 'createFolder', defaultValue: false, description: 'true if the folder is not created yet')
-        file(name:'file', description:'file to put on folder')
     }
 
     agent  any
 
     stages {
+        stage("Upload") {
+            def inputFile = input message: 'Upload file', parameters: [file(name: 'data.zip')]
+            new hudson.FilePath(new File("$workspace/data.zip")).copyFrom(inputFile)
+            inputFile.delete()
+        }
         stage('Plan') {
             steps{
                 script {
