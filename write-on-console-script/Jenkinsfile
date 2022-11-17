@@ -1,1 +1,26 @@
+pipeline {
+    
+    parameters {
+        string(name: 'folderName', defaultValue: '', description: 'folder name to create or access to it')
+        booleanParam(name: 'createFolder', defaultValue: false, description: 'true if the folder is not created yet')
+        base64File(name: 'file', description:'file to put on folder')
+    }
 
+    agent  any
+
+    stages {
+        stage('Plan') {
+            steps{
+                script {
+                    if (createFolder) {
+                        echo 'create folder: ${folderName}'
+                        sh 'pwd;mkdir ${folderName}'
+                    }
+                    echo 'create file into folder: ${folderName}'
+                    sh 'pwd;cd ${folderName}'
+                    sh 'pwd;cat ${file}'
+                }
+            }
+        }
+    }
+}
