@@ -1,8 +1,9 @@
 pipeline {  
     
     parameters {
-        string(name: 'folderName', defaultValue: 'Nuova Cartella', description: 'folder name to create or access to it')
+        string(name: 'folderName', defaultValue: 'NuovaCartella', description: 'folder name to create or access to it')
         booleanParam(name: 'createFolder', defaultValue: false, description: 'true if the folder is not created yet')
+        string(name: 'fileName', defaultValue: 'NuovoFile.txt', description: 'file name to create')
     }
 
     agent  any
