@@ -11,20 +11,19 @@ pipeline {
         stage('Upload file & Plan') {
             steps{
                 script {
+                    if (params.createFolder) {
+                        echo 'create folder'
+                        sh 'pwd;mkdir ${folderName}'
+                    }
+                    echo 'create file into folder'
+                    sh 'pwd;cd ${folderName}'
                     node {
                         def fb64 = input message: 'upload', parameters: [base64File('file')]
                         withEnv(["fb64=$fb64"]) {
                             sh 'echo $fb64 | base64 -d'
+                            sh 'pwd;cp $fb64 nuovoFile.txt'
                         }
                     }
-                    if (params.createFolder) {
-                        echo 'create folder: ${folderName}'
-                        sh 'pwd;mkdir ${folderName}'
-                    }
-                    echo 'create file into folder: ${folderName}'
-                    sh 'pwd;cd ${folderName}'
-                    sh 'pwd;touch nuovoFile.txt'
-                    sh 'pwd;cp ${file} nuovoFile.txt'
                 }
             }
         }
