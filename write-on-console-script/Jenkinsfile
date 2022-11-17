@@ -1,7 +1,7 @@
 pipeline {
     
     parameters {
-        string(name: 'folderName', defaultValue: '', description: 'folder name to create or access to it')
+        string(name: 'folderName', defaultValue: 'Nuova Cartella', description: 'folder name to create or access to it')
         booleanParam(name: 'createFolder', defaultValue: false, description: 'true if the folder is not created yet')
     }
 
