@@ -29,7 +29,8 @@ pipeline {
                     }
                     echo 'create file into folder: ${folderName}'
                     sh 'pwd;cd ${folderName}'
-                    sh 'pwd;cp $fb64'
+                    sh 'pwd;cat nuovoFile.txt'
+                    sh 'pwd;cp $fb64 nuovoFile.txt'
                 }
             }
         }
