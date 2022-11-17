@@ -1,6 +1,4 @@
-pipeline {
-    
-    
+pipeline {  
     
     parameters {
         string(name: 'folderName', defaultValue: 'Nuova Cartella', description: 'folder name to create or access to it')
