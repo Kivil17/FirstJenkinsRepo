@@ -18,7 +18,7 @@ pipeline {
                     }
                     echo 'create file into folder: ${folderName}'
                     sh 'pwd;cd ${folderName}'
-                    sh 'pwd;copy ${file}'
+                    sh 'pwd;cp ${file}'
                 }
             }
         }
