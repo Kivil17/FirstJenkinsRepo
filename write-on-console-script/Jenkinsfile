@@ -24,11 +24,11 @@ pipeline {
             steps{
                 script {
                     if (params.createFolder) {
-                        echo 'create folder: ${params.folderName}'
-                        sh 'pwd;mkdir ${params.folderName}'
+                        echo 'create folder: ${folderName}'
+                        sh 'pwd;mkdir ${folderName}'
                     }
-                    echo 'create file into folder: ${params.folderName}'
-                    sh 'pwd;cd ${params.folderName}'
+                    echo 'create file into folder: ${folderName}'
+                    sh 'pwd;cd ${folderName}'
                     sh 'pwd;cp $fb64'
                 }
             }
