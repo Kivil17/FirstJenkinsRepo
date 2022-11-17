@@ -21,10 +21,7 @@ pipeline {
                     sh 'pwd;cd ${folderName}'
                     node {
                         def fb64 = input message: 'upload', parameters: [base64File('file')]
-                        def file_in_workspace = unstashParam $fb64
-                        withEnv(["fb64=$fb64"]) {
-                            sh 'pwd;cat >> ${fileName} ${file_in_workspace}'
-                        }
+                        sh 'pwd;cat >> ${fileName} ${file}'
                     }
                 }
             }
