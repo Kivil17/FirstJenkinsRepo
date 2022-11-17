@@ -16,12 +16,12 @@ pipeline {
                         sh 'pwd;mkdir ${folderName}'
                     }
                     echo 'create file into folder'
+                    sh 'pwd;chmod 755 ${folderName}'
                     sh 'pwd;cd ${folderName}'
                     node {
                         def fb64 = input message: 'upload', parameters: [base64File('file')]
                         withEnv(["fb64=$fb64"]) {
-                            sh 'pwd;touch nuovoFile.txt'
-                            sh 'pwd;cp $fb64 | base64 -d nuovoFile.txt'
+                            sh 'pwd;cat >> ${fileName} $fb64 | base64 -d'
                         }
                     }
                 }
