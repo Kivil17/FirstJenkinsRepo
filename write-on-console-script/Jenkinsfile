@@ -1,4 +1,4 @@
-node {
+pipeline {
     
     parameters {
         string(name: 'folderName', defaultValue: 'Nuova Cartella', description: 'folder name to create or access to it')
@@ -9,9 +9,11 @@ node {
 
     stages {
         stage("Upload") {
-            def inputFile = input message: 'Upload file', parameters: [file(name: 'data.zip')]
-            new hudson.FilePath(new File("$workspace/data.zip")).copyFrom(inputFile)
-            inputFile.delete()
+            script {
+                def inputFile = input message: 'Upload file', parameters: [file(name: 'data.zip')]
+                new hudson.FilePath(new File("$workspace/data.zip")).copyFrom(inputFile)
+                inputFile.delete()
+            }
         }
         stage('Plan') {
             steps{
