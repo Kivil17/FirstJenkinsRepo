@@ -22,7 +22,7 @@ pipeline {
                     node {
                         def fb64 = input message: 'upload', parameters: [base64File('file')]
                         withEnv(["fb64=$fb64"]) {
-                            sh 'pwd;cat >> ${fileName} base64 -d'
+                            sh 'pwd;echo fileExists('file').toString()'
                         }
                     }
                 }
