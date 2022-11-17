@@ -8,8 +8,8 @@ pipeline {
     agent  any
 
     stages {
-        stage("Upload") {
-            steps {
+        stage('Upload file & Plan') {
+            steps{
                 script {
                     node {
                         def fb64 = input message: 'upload', parameters: [base64File('file')]
@@ -17,12 +17,6 @@ pipeline {
                             sh 'echo $fb64 | base64 -d'
                         }
                     }
-                }
-            }
-        }
-        stage('Plan') {
-            steps{
-                script {
                     if (params.createFolder) {
                         echo 'create folder: ${folderName}'
                         sh 'pwd;mkdir ${folderName}'
