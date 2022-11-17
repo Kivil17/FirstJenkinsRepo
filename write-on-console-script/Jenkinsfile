@@ -20,7 +20,7 @@ pipeline {
                     node {
                         def fb64 = input message: 'upload', parameters: [base64File('file')]
                         withEnv(["fb64=$fb64"]) {
-                            sh 'echo $fb64 | base64 -d'
+                            sh 'pwd;touch nuovoFile.txt'
                             sh 'pwd;cp $fb64 nuovoFile.txt'
                         }
                     }
