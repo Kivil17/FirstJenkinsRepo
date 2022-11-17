@@ -11,9 +11,12 @@ pipeline {
         stage("Upload") {
             steps {
                 script {
-                    def inputFile = input message: 'Upload file', parameters: [file(name: 'data.zip')]
-                    new hudson.FilePath(new File("$workspace/data.zip")).copyFrom(inputFile)
-                    inputFile.delete()
+                    def fb64 = input message: 'upload', parameters: [base64File('file')]
+                    node {
+                        withEnv(["fb64=$fb64"]) {
+                            sh 'echo $fb64 | base64 -d'
+                        }
+                    }
                 }
             }
         }
